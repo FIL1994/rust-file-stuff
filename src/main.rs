@@ -1,19 +1,31 @@
 use std::error::Error;
 use std::io::prelude::*;
-use std::fs::{File};
+use std::fs::{self, File};
 use std::path::Path;
-use std::{fs, env};
+
+#[macro_use]
+extern crate clap;
+use clap::{App};
 
 static LOREM_IPSUM: &'static str =
-"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-";
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    ";
 
 fn main() {
+    // allows user to use -h or --help (e.g. cargo run -- -h)
+    let matches = App::new("rust-file-stuff")
+        .author(crate_authors!())
+        .version(crate_version!())
+        .about("Reads and writes files")
+        // .before_help("something before")
+        // .after_help("something after")
+        .get_matches();
+
     // READ FILE
 
     // create a path to the file
