@@ -1,0 +1,6 @@
+[package]
+name = "file-test"
+version = "0.1.0"
+authors = ["Philip Van Raalte <phil.vanraalte@gmail.com>"]
+
+[dependencies]
